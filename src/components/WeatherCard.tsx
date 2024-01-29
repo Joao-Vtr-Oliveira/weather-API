@@ -11,15 +11,19 @@ import {
   Input,
   Text,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { weatherRequest } from '../requests/weatherRequest';
 import { weatherReturnType } from '../types/weatherReturn';
 
 const WeatherCard = () => {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState('Betim');
   const [locationData, setLocationData] = useState<weatherReturnType | null>(
     null
   );
+
+  useEffect(() => {
+    fetchButton();
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
