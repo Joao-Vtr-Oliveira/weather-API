@@ -1,9 +1,9 @@
-import { Heading } from '@chakra-ui/react'
+import WeatherCard from './components/WeatherCard'
 
 function App() {
   return (
-    <div>
-      <Heading>A</Heading>
+    <div className='h-screen flex flex-col justify-center items-center bg-black'>
+      <WeatherCard />
     </div>
   )
 }
