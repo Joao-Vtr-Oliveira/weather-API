@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-image: url('../images/k7q4intsafp71.jpg') !important;
+  backdrop-filter: blur(2px);
+  background-position: center !important;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+}
