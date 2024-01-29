@@ -8,7 +8,6 @@ export const weatherRequest = async (location: string):Promise<weatherReturnType
     if (locationData.status !== 200) {
       throw new Error(`Erro na solicitação: ${locationData.status} - ${locationData.statusText}`);
     }
-    console.log(locationData);
     return locationData.data;
   } catch(error: any) {
     throw new Error(error);

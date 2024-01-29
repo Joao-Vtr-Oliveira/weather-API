@@ -10,6 +10,7 @@ import {
   Image,
   Input,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { weatherRequest } from '../requests/weatherRequest';
@@ -20,6 +21,7 @@ const WeatherCard = () => {
   const [locationData, setLocationData] = useState<weatherReturnType | null>(
     null
   );
+  const toast = useToast();
 
   useEffect(() => {
     fetchButton();
@@ -34,8 +36,39 @@ const WeatherCard = () => {
   };
 
   const fetchButton = async () => {
-    const info = await weatherRequest(location);
-    setLocationData(info);
+    let loadingToastId;
+    try {
+			loadingToastId = toast({
+				title: 'Searching for the location...',
+				description: 'Please, wait',
+				status: 'info',
+				duration: null,
+				isClosable: false,
+			});
+			const info = await weatherRequest(location);
+			setLocationData(info);
+      console.log(info);
+			toast.close(loadingToastId);
+			if (info) {
+				toast({
+					title: 'Request completed',
+					description: 'Sucess!',
+					status: 'success',
+					duration: 2000,
+					isClosable: true,
+				});
+			}
+		} catch (error) {
+			setLocationData(null);
+			if (loadingToastId) toast.close(loadingToastId);
+			toast({
+				title: 'Failed to find place',
+				description: 'Please, check the name',
+				status: 'error',
+				duration: null,
+				isClosable: true,
+			});
+		}
   };
 
   return (
