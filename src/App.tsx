@@ -1,10 +1,11 @@
+import { Box } from '@chakra-ui/react'
 import WeatherCard from './components/WeatherCard'
 
 function App() {
   return (
-    <div className='h-screen flex flex-col justify-center items-center '>
+    <Box h='100vh' display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
       <WeatherCard />
-    </div>
+    </Box>
   )
 }
 
